@@ -192,7 +192,6 @@
     <ClInclude Include="CAddUser.h" />
     <ClInclude Include="CChatRecords.h" />
     <ClInclude Include="CChatRoomMember.h" />
-    <ClInclude Include="CDecryptDatabase.h" />
     <ClInclude Include="CDecryptImage.h" />
     <ClInclude Include="CFriendList.h" />
     <ClInclude Include="CFunctions.h" />
@@ -203,6 +202,7 @@
     <ClInclude Include="CMyTableCtrl.h" />
     <ClInclude Include="CPay.h" />
     <ClInclude Include="CRoomAnnouncement.h" />
+    <ClInclude Include="CSendChatRoomAt.h" />
     <ClInclude Include="CSendMsg.h" />
     <ClInclude Include="CSendRoomMsg.h" />
     <ClInclude Include="CSendXmlCard.h" />
@@ -220,7 +220,6 @@
     <ClCompile Include="CAddUser.cpp" />
     <ClCompile Include="CChatRecords.cpp" />
     <ClCompile Include="CChatRoomMember.cpp" />
-    <ClCompile Include="CDecryptDatabase.cpp" />
     <ClCompile Include="CDecryptImage.cpp" />
     <ClCompile Include="CFriendList.cpp" />
     <ClCompile Include="CFunctions.cpp" />
@@ -231,6 +230,7 @@
     <ClCompile Include="CMyTableCtrl.cpp" />
     <ClCompile Include="CPay.cpp" />
     <ClCompile Include="CRoomAnnouncement.cpp" />
+    <ClCompile Include="CSendChatRoomAt.cpp" />
     <ClCompile Include="CSendMsg.cpp" />
     <ClCompile Include="CSendRoomMsg.cpp" />
     <ClCompile Include="CSendXmlCard.cpp" />

@@ -63,7 +63,7 @@
 
 #define WxCllectMoneyCall1 0x676B10		//收款
 #define WxCllectMoneyCall2 0x676B90		//收款
-#define WxAntiRevoke 0x312565			//收款
+#define WxAntiRevoke 0x312565			//防撤回
 
 
 #define WxAgreeUserRequestCall1 0x1865B0;	  //同意好友请求
@@ -76,3 +76,6 @@
 #define WxGetExpressionsCallAddr 0x27DE10	//提取微信表情
 
 
+#define WxDelRoomMemberCall1 0x481900	  //删除群成员
+#define WxDelRoomMemberCall2 0x50010	  //删除群成员
+#define WxDelRoomMemberCall3 0x2652F0	  //删除群成员

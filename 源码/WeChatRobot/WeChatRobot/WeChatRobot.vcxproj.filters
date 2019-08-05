@@ -70,9 +70,6 @@
     <Filter Include="功能大全\无限多开">
       <UniqueIdentifier>{744c6196-1c9e-4599-84a0-174a0cad9551}</UniqueIdentifier>
     </Filter>
-    <Filter Include="功能大全\解密数据库">
-      <UniqueIdentifier>{5a3da14d-6a7a-4ae7-8b2d-c5ab6fcffe48}</UniqueIdentifier>
-    </Filter>
     <Filter Include="菜单栏">
       <UniqueIdentifier>{6e5d0c2d-2b48-4085-973d-e23069646a4c}</UniqueIdentifier>
     </Filter>
@@ -87,6 +84,12 @@
     </Filter>
     <Filter Include="好友列表\修改群名称">
       <UniqueIdentifier>{c056225b-cdec-4635-b153-e64128b4878b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="好友列表\查看群成员\发送艾特消息">
+      <UniqueIdentifier>{e6129c08-a16f-4b2b-a5d6-6956224e905c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="好友列表\查看群成员\查看群成员">
+      <UniqueIdentifier>{f3300f15-5b33-45cd-9fda-d0ed9bd2efdd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -147,14 +150,8 @@
     <ClInclude Include="CSendXmlCard.h">
       <Filter>好友列表\发送名片</Filter>
     </ClInclude>
-    <ClInclude Include="CChatRoomMember.h">
-      <Filter>好友列表\查看群成员</Filter>
-    </ClInclude>
     <ClInclude Include="CMultiOpen.h">
       <Filter>功能大全\无限多开</Filter>
-    </ClInclude>
-    <ClInclude Include="CDecryptDatabase.h">
-      <Filter>功能大全\解密数据库</Filter>
     </ClInclude>
     <ClInclude Include="CPay.h">
       <Filter>菜单栏\打赏作者</Filter>
@@ -167,6 +164,12 @@
     </ClInclude>
     <ClInclude Include="CSetRoomName.h">
       <Filter>好友列表\修改群名称</Filter>
+    </ClInclude>
+    <ClInclude Include="CSendChatRoomAt.h">
+      <Filter>好友列表\查看群成员\发送艾特消息</Filter>
+    </ClInclude>
+    <ClInclude Include="CChatRoomMember.h">
+      <Filter>好友列表\查看群成员\查看群成员</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -218,14 +221,8 @@
     <ClCompile Include="CSendXmlCard.cpp">
       <Filter>好友列表\发送名片</Filter>
     </ClCompile>
-    <ClCompile Include="CChatRoomMember.cpp">
-      <Filter>好友列表\查看群成员</Filter>
-    </ClCompile>
     <ClCompile Include="CMultiOpen.cpp">
       <Filter>功能大全\无限多开</Filter>
-    </ClCompile>
-    <ClCompile Include="CDecryptDatabase.cpp">
-      <Filter>功能大全\解密数据库</Filter>
     </ClCompile>
     <ClCompile Include="CPay.cpp">
       <Filter>菜单栏\打赏作者</Filter>
@@ -238,6 +235,12 @@
     </ClCompile>
     <ClCompile Include="CSetRoomName.cpp">
       <Filter>好友列表\修改群名称</Filter>
+    </ClCompile>
+    <ClCompile Include="CSendChatRoomAt.cpp">
+      <Filter>好友列表\查看群成员\发送艾特消息</Filter>
+    </ClCompile>
+    <ClCompile Include="CChatRoomMember.cpp">
+      <Filter>好友列表\查看群成员\查看群成员</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

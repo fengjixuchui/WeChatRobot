@@ -23,12 +23,12 @@
 #define IDD_SEND_ROOM_MSG               154
 #define IDD_SendCard                    156
 #define IDD_CHATROOM_MEMBER             158
-#define IDD_DECRYPT_DB                  160
 #define IDD_PAY                         162
 #define IDB_BITMAP1                     166
 #define IDD_ABOUT_AUTHOR                167
 #define IDD_ADD_USER                    169
 #define IDD_SET_ROOM_NAME               171
+#define IDD_SENDAT                      173
 #define IDC_INJECT_DLL                  1000
 #define IDC_UNLOAD_DLL                  1001
 #define IDC_SHOW_QRPIC                  1003
@@ -44,7 +44,6 @@
 #define IDC_EDIT2                       1012
 #define IDC_INFORMATION                 1013
 #define IDC_ACCOUNT                     1013
-#define IDC_EDIT6                       1013
 #define IDC_DECRYPT_PIC                 1014
 #define IDC_NICKNAME                    1014
 #define IDC_EDIT3                       1014
@@ -66,11 +65,11 @@
 #define IDC_SendCard                    1030
 #define IDC_MULTI_OPEN                  1031
 #define IDC_DECRYPT_DB                  1032
-#define IDC_DECRYPT                     1033
 #define IDC_ADD_USER                    1033
 #define IDC_AUTO_CHAT                   1034
 #define IDC_GET_EXPRESSION              1035
 #define IDC_SetRoomName                 1036
+#define IDC_SendAt                      1037
 #define ID_32775                        32775
 #define ID_32776                        32776
 #define ID_32777                        32777
@@ -91,14 +90,17 @@
 #define ID_32792                        32792
 #define ID_32793                        32793
 #define ID_32794                        32794
+#define ID_32795                        32795
+#define ID_32796                        32796
+#define ID_32797                        32797
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        173
-#define _APS_NEXT_COMMAND_VALUE         32795
-#define _APS_NEXT_CONTROL_VALUE         1037
+#define _APS_NEXT_RESOURCE_VALUE        175
+#define _APS_NEXT_COMMAND_VALUE         32798
+#define _APS_NEXT_CONTROL_VALUE         1038
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

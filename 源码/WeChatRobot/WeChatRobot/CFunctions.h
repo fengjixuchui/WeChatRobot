@@ -25,7 +25,6 @@ public:
 	afx_msg void OnBnClickedDecryptPic();
 
 	afx_msg void OnBnClickedMultiOpen();
-	afx_msg void OnBnClickedDecryptDb();
 	afx_msg void OnBnClickedAddUser();
 	afx_msg void OnBnClickedAutoChat();
 	afx_msg void OnBnClickedGetExpression();

@@ -26,4 +26,9 @@ public:
 	CListCtrl m_ChatRoomMembers;
 	virtual BOOL OnInitDialog();
 	afx_msg BOOL OnCopyData(CWnd* pWnd, COPYDATASTRUCT* pCopyDataStruct);
+	afx_msg void OnClickList1(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnRclickList1(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnSendChatRoomAt();
+	afx_msg void OnCopyWxid();
+	afx_msg void OnDelRoomMember();
 };

@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "ChatRoomOperate.h"
 #include <stdio.h>
+#include <string>
+using namespace std;
 
 
 //************************************************************
@@ -392,4 +394,189 @@ void SetRoomName(wchar_t* roomwxid, wchar_t* roomname)
 		mov ecx, asmWxid;
 		call dwCall1;
 	}
+}
+
+
+//发送艾特消息需要的数据结构
+class TEXT_WX
+{
+public:
+	wchar_t* pWxid = nullptr;
+	DWORD length = 0;
+	DWORD maxLength = 0;
+	DWORD fill1 = 0;
+	DWORD fill2 = 0;
+	wchar_t wxid[1024] = { 0 };
+
+	TEXT_WX(wstring wsWxid)
+	{
+		const wchar_t* temp = wsWxid.c_str();
+		wmemcpy(wxid, temp, wsWxid.length());
+		length = wsWxid.length();
+		maxLength = wsWxid.capacity();
+		fill1 = 0;
+		fill2 = 0;
+		pWxid = wxid;
+	}
+};
+
+
+
+
+class ROOM_AT
+{
+public:
+	DWORD at_WxidList = 0;
+	DWORD at_end1 = 0;
+	DWORD at_end2 = 0;
+};
+
+
+class  TEXT_WXID
+{
+public:
+	wchar_t* pWxid = nullptr;
+	DWORD length = 0;
+	DWORD maxLength = 0;
+	DWORD fill1 = 0;
+	DWORD fill2 = 0;
+};
+
+
+
+//************************************************************
+// 函数名称: SendRoomAtMsg
+// 函数说明: 发送艾特消息
+// 作    者: GuiShou
+// 时    间: 2019/7/26
+// 参    数: chatroomid 群ID memberwxid 群成员微信ID membernickname群成员昵称 msg 消息内容
+// 返 回 值: void 
+//************************************************************
+void SendRoomAtMsg(wchar_t* chatroomid, wchar_t* memberwxid, wchar_t* membernickname, wchar_t* msg)
+{
+	HMODULE dllAdress = GetModuleHandleA("WeChatWin.dll");
+	DWORD callAddress_SendText = (DWORD)dllAdress + WxSendMessage;
+
+
+	TEXT_WX wxId(chatroomid);
+	wchar_t tempmsg[100] = { 0 };
+	swprintf_s(tempmsg, L"@%s %s", membernickname, msg);
+	TEXT_WX wxMsg(tempmsg);
+
+	TEXT_WXID wxAtId;
+	wxAtId.pWxid = memberwxid;
+	wxAtId.length = wcslen(memberwxid);
+	wxAtId.maxLength = wcslen(memberwxid) * 2;
+	wxAtId.fill1 = 0;
+	wxAtId.fill2 = 0;
+	//DWORD* asmWxid = (DWORD*)& wxAtId.pWxid;
+
+	ROOM_AT roomAt;
+	roomAt.at_WxidList = (DWORD)& wxAtId.pWxid;
+	roomAt.at_end1 = roomAt.at_WxidList + 5 * 4;
+	roomAt.at_end2 = roomAt.at_end1;
+
+	//定义一个缓冲区
+	BYTE buff[0x81C] = { 0 };
+
+	//执行汇编调用
+	__asm
+	{
+		lea edx, wxId
+
+		//传递参数
+		push 0x1
+
+		lea eax, roomAt
+		push eax
+
+		//微信消息内容
+		lea ebx, wxMsg
+
+		push ebx
+		lea ecx, buff
+
+		//调用函数
+		call callAddress_SendText
+
+		//平衡堆栈
+		add esp, 0xC
+	}
+}
+
+
+//************************************************************
+// 函数名称: DelRoomMember
+// 函数说明: 删除群成员
+// 作    者: GuiShou
+// 时    间: 2019/7/26
+// 参    数: roomid 群ID memberwxid 群成员微信ID 
+// 返 回 值: void 
+//************************************************************
+void DelRoomMember(wchar_t* roomid, wchar_t* memberwxid)
+{
+	//群ID结构体
+	struct RoomIdStruct
+	{
+		wchar_t* roomid;
+		int roomidLen;
+		int roomidMaxLen;
+		int full = 0;
+		int full2 = 0;
+	};
+
+	//拿到call的数据地址
+	DWORD dwCall1 = (DWORD)GetModuleHandle(L"WeChatWin.dll") + WxDelRoomMemberCall1;
+	DWORD dwCall2 = (DWORD)GetModuleHandle(L"WeChatWin.dll") + WxDelRoomMemberCall2;
+	DWORD dwCall3 = (DWORD)GetModuleHandle(L"WeChatWin.dll") + WxDelRoomMemberCall3;
+
+	//组装群ID结构体
+	RoomIdStruct roomiddata;
+	roomiddata.roomid = roomid;
+	roomiddata.roomidLen = wcslen(roomid) + 1;
+	roomiddata.roomidMaxLen = (wcslen(roomid) + 1) * 2;
+
+	//组装微信ID结构体
+	wchar_t wxidbuff[0xD0] = { 0 };
+	DWORD* dwBuff = (DWORD*)&wxidbuff;
+	dwBuff[0] = (DWORD)memberwxid;
+	dwBuff[1] = wcslen(memberwxid);
+	dwBuff[2] = wcslen(memberwxid) * 2;
+	dwBuff[3] = 0;
+	dwBuff[4] = 0;
+
+
+	wchar_t datatbuffer[0xD0] = { 0 };
+	DWORD* dwDatabuf = (DWORD*)&datatbuffer;
+	dwDatabuf[0] = (DWORD)& wxidbuff;
+	dwDatabuf[1] = dwDatabuf[0] + 0x14;
+	dwDatabuf[2] = dwDatabuf[0] + 0x14;
+
+	char tempbuff[50] = { 0 };
+	sprintf_s(tempbuff, "%p", DelRoomMember);
+	MessageBoxA(NULL, tempbuff, "地址", 0);
+
+
+	//调用删除群成员call
+	__asm
+	{
+		pushad;
+		sub esp, 0x14;
+		lea eax, roomiddata.roomid;
+		mov ecx, esp;
+		push eax;
+		call dwCall1;
+		lea edi, datatbuffer;
+		push edi;
+		call dwCall2;
+		mov ecx, eax;
+		call dwCall3;
+		popad;
+	}
+
+
+
+
+
+
 }

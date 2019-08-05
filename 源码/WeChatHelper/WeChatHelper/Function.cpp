@@ -144,44 +144,6 @@ wchar_t * UTF8ToUnicode(const char* str)
 }
 
 
-//************************************************************
-// 函数名称: SendDatabaseKey
-// 函数说明: 发送数据库密钥
-// 作    者: GuiShou
-// 时    间: 2019/7/13
-// 参    数: void
-// 返 回 值: void
-//************************************************************
-void SendDatabaseKey()
-{
-	char databasekey[0x20] = { 0 };
-	//获取WeChatWin的基址
-	DWORD dwKeyAddr = (DWORD)GetModuleHandle(L"WeChatWin.dll")+ WxDatabaseKey;
-
-	LPVOID* pAddr =(LPVOID*)(*(DWORD*)dwKeyAddr);
-
-	DWORD dwOldAttr = 0;
-	VirtualProtect(pAddr, 0x20, PAGE_EXECUTE_READWRITE, &dwOldAttr);
-
-	memcpy(databasekey, pAddr, 0x20);
-
-	VirtualProtect(pAddr, 0x20, dwOldAttr, &dwOldAttr);
-
-	//发送到客户端
-	HWND hDatabase = FindWindow(NULL, L"Decrypt_Database");
-	if (hDatabase == NULL)
-	{
-		MessageBoxA(NULL, "未查找到Decrypt_Database窗口", "错误", MB_OK);
-		return;
-	}
-	COPYDATASTRUCT datakey;
-	datakey.dwData = WM_DecryptDatabase;
-	datakey.lpData = databasekey;
-	datakey.cbData = 0x20;
-	//发送消息给控制端
-	SendMessage(hDatabase, WM_COPYDATA, (WPARAM)hDatabase, (LPARAM)&datakey);
-}
-
 
 //************************************************************
 // 函数名称: AddWxUser

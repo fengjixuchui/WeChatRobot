@@ -72,6 +72,13 @@ void CDecryptImage::OnBnClickedDecryptimage()
 		MessageBox(L"图片不存在 请重试");
 		return;
 	}
+	//检测密钥是否存在
+	if (m_key=="")
+	{
+		MessageBox(L"密钥不能为空 请重试");
+		return;
+	}
+
 	//打开文件
 	HANDLE hFile = CreateFileW(m_ImagePath, GENERIC_ALL, NULL, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (hFile==INVALID_HANDLE_VALUE)

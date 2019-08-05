@@ -8,7 +8,6 @@
 #include "CInformation.h"
 #include "CDecryptImage.h"
 #include "CMultiOpen.h"
-#include "CDecryptDatabase.h"
 #include "CAddUser.h"
 #include "CFriendList.h"
 
@@ -39,7 +38,6 @@ BEGIN_MESSAGE_MAP(CFunctions, CDialogEx)
 	ON_BN_CLICKED(IDC_INFORMATION, &CFunctions::OnBnClickedInformation)
 	ON_BN_CLICKED(IDC_DECRYPT_PIC, &CFunctions::OnBnClickedDecryptPic)
 	ON_BN_CLICKED(IDC_MULTI_OPEN, &CFunctions::OnBnClickedMultiOpen)
-	ON_BN_CLICKED(IDC_DECRYPT_DB, &CFunctions::OnBnClickedDecryptDb)
 	ON_BN_CLICKED(IDC_ADD_USER, &CFunctions::OnBnClickedAddUser)
 	ON_BN_CLICKED(IDC_AUTO_CHAT, &CFunctions::OnBnClickedAutoChat)
 	ON_BN_CLICKED(IDC_GET_EXPRESSION, &CFunctions::OnBnClickedGetExpression)
@@ -93,20 +91,6 @@ void CFunctions::OnBnClickedMultiOpen()
 }
 
 
-
-//************************************************************
-// 函数名称: OnBnClickedDecryptDb
-// 函数说明: 响应解密数据库按钮
-// 作    者: GuiShou
-// 时    间: 2019/7/13
-// 参    数: void
-// 返 回 值: void
-//***********************************************************
-void CFunctions::OnBnClickedDecryptDb()
-{
-	CDecryptDatabase decyptdatabase;
-	decyptdatabase.DoModal();
-}
 
 
 //************************************************************

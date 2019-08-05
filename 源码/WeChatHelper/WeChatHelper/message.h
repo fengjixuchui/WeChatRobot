@@ -22,3 +22,5 @@
 #define WM_AutoChat 19
 #define WM_CancleAutoChat 20
 #define WM_AlreadyLogin 21
+#define WM_SendAtMsg 22
+#define WM_DelRoomMember 23

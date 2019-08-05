@@ -26,9 +26,10 @@ void InitWindow(HMODULE hModule)
 	//检查当前微信版本
 	if (IsWxVersionValid())
 	{
+		Sleep(100);
 		//获取WeChatWin的基址
 		DWORD dwWeChatWinAddr = (DWORD)GetModuleHandle(L"WeChatWin.dll");
-
+	
 		//检测微信是否登陆
 		DWORD dwIsLogin = dwWeChatWinAddr + LoginSign_Offset + 0x194;
 		if (*(DWORD*)dwIsLogin == 0)	//等于0说明微信未登录
@@ -236,12 +237,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lParam)
 			ShowChatRoomUser((wchar_t*)pCopyData->lpData);
 		}
 		break;
-		//解密数据库
-		case WM_DecryptDatabase:
-		{
-			SendDatabaseKey();
-		}
-		break;
 		//添加好友
 		case WM_AddUser:
 		{
@@ -276,6 +271,33 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lParam)
 		case WM_CancleAutoChat:
 		{
 			g_AutoChat = FALSE;
+		}
+		break;
+		//发送艾特消息
+		case WM_SendAtMsg:
+		{
+			struct AtMsg
+			{
+				wchar_t chatroomid[50] = { 0 };
+				wchar_t memberwxid[50] = { 0 };
+				wchar_t membernickname[50] = { 0 };
+				wchar_t msgcontent[100] = { 0 };
+			};
+			AtMsg *msg = (AtMsg*)pCopyData->lpData;
+			SendRoomAtMsg(msg->chatroomid,msg->memberwxid,msg->membernickname,msg->msgcontent);
+
+		}
+		break;
+		//删除群成员
+		case WM_DelRoomMember:
+		{
+			struct DelMemberStruct
+			{
+				wchar_t roomid[50];
+				wchar_t memberwxid[50];
+			};
+			DelMemberStruct *msg = (DelMemberStruct*)pCopyData->lpData;
+			DelRoomMember(msg->roomid, msg->memberwxid);
 		}
 		break;
 

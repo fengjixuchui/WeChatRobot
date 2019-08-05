@@ -140,7 +140,7 @@ afx_msg LRESULT CFriendList::OnShowfriendlist(WPARAM wParam, LPARAM lParam)
 // 作    者: GuiShou
 // 时    间: 2019/7/6
 // 参    数: WPARAM wParam, LPARAM lParam
-// 返 回 值: BOOL
+// 返 回 值: void
 //***********************************************************
 void CFriendList::OnRclickFriendlist(NMHDR *pNMHDR, LRESULT *pResult)
 {
@@ -191,8 +191,8 @@ void CFriendList::OnRclickFriendlist(NMHDR *pNMHDR, LRESULT *pResult)
 // 函数说明: 响应List控件的左键点击消息 
 // 作    者: GuiShou
 // 时    间: 2019/7/6
-// 参    数: WPARAM wParam, LPARAM lParam
-// 返 回 值: BOOL
+// 参    数: pNMHDR pResult
+// 返 回 值: void
 //***********************************************************
 void CFriendList::OnClickFriendlist(NMHDR *pNMHDR, LRESULT *pResult)
 {
